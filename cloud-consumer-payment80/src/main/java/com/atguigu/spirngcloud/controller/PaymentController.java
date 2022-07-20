@@ -26,19 +26,20 @@ import java.net.URL;
 public class PaymentController {
     @Resource
     private RestTemplate restTemplate;
-    private static final String PROVIDER_URL = "http://localhost:8001";
+    //    private static final String PROVIDER_URL = "http://localhost:8001";
+    private static final String PROVIDER_URL = "http://CLOUD-PAYMENT-SERVICE";
 
-    @PostMapping("/payment/add")
+    @PostMapping("/consumer/add")
     public CommonResult add(String serial) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("serial", serial);
         final ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.postForEntity(PROVIDER_URL + "/payment/add", map, CommonResult.class);
-        return new CommonResult(200, "成功", commonResultResponseEntity.getBody().getData());
+        return new CommonResult(200, "成功", commonResultResponseEntity.getBody());
     }
 
-    @GetMapping("/payment/get/{id}")
+    @GetMapping("/consumer/get/{id}")
     public CommonResult get(@PathVariable("id") Integer id) {
-        final ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.getForEntity(PROVIDER_URL + "/payment/get/"+ id, CommonResult.class);
-        return new CommonResult(200, "成功", commonResultResponseEntity.getBody().getData());
+        final ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.getForEntity(PROVIDER_URL + "/payment/get/" + id, CommonResult.class);
+        return new CommonResult(200, "成功", commonResultResponseEntity.getBody());
     }
 }
