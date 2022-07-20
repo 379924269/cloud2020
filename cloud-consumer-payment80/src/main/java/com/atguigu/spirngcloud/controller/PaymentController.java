@@ -32,9 +32,8 @@ public class PaymentController {
     public CommonResult add(String serial) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("serial", serial);
-        HttpEntity<MultiValueMap> httpEntity = new HttpEntity<>(map);
-        final ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.postForEntity(PROVIDER_URL + "/payment/add", httpEntity, CommonResult.class);
-        return new CommonResult(200, "成功", commonResultResponseEntity);
+        final ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.postForEntity(PROVIDER_URL + "/payment/add", map, CommonResult.class);
+        return new CommonResult(200, "成功", commonResultResponseEntity.getBody().getData());
     }
 
     @GetMapping("/payment/get/{id}")
