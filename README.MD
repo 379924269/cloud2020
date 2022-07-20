@@ -43,6 +43,16 @@
 </plugins>
 ````
 
+## 地址映射
+修改：C:\Windows\System32\drivers\etc\host 文件 如
+````
+# 地址映射
+
+127.0.0.1       eureka7001
+127.0.0.1       eureka7002
+127.0.0.1       eureka7003
+````
+
 ###FQA
 #### 反复创建一个项目，有时候java和resource资源文件就会乱，怎么处理
 我直接删除.idea 文件，然后重启idea，感觉就好了
