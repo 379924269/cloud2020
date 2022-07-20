@@ -16,6 +16,8 @@ mybatis:
 eureka:
   instance:
     hostname: localhost
+    instance-id: payment8001
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
