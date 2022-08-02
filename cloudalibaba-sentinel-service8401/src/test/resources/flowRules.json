@@ -1,0 +1,17 @@
+{
+  "limitApp": "default",
+  "resource": "testHotKey",
+  "grade": 1,
+  "count": 1,
+  "strategy": 0,
+  "refResource": null,
+  "clusterMode": false,
+  "clusterConfig": {
+    "flowId": null,
+    "thresholdType": 0,
+    "fallbackToLocalWhenFail": true,
+    "strategy": 0,
+    "sampleCount": 10,
+    "windowIntervalMs": 1000
+  }
+}

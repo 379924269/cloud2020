@@ -1,6 +1,9 @@
 package com.atguigu.spirngcloud.controller;
 
+import com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
+import com.alibaba.csp.sentinel.datasource.WritableDataSource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +32,7 @@ public class FlowLimitController {
 
 	@GetMapping("/testD")
 	public String testD() {
+		SentinelAutoConfiguration configuration;
 		try {
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {

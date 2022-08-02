@@ -11,6 +11,22 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+      eager: true
+      datasource:  # 流控规则持久化 Nacos
+        flow-datasource:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloud-alibaba-sentinel-service  # ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+        degrade-data-source: # 降级规则
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-degrade-rules # ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade
 management:
   endpoints:
     web:
