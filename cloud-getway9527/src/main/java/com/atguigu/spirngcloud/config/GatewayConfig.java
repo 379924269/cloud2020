@@ -26,17 +26,13 @@ public class GatewayConfig {
 
     @PostConstruct
     public void init() {
-        BlockRequestHandler blockRequestHandler = new BlockRequestHandler() {
-
-            public Mono<ServerResponse> handleRequest(ServerWebExchange serverWebExchange, Throwable throwable) {
-                Map<String, String> resMap = new HashMap<>();
-                resMap.put("code", HttpStatus.TOO_MANY_REQUESTS.toString());
-                resMap.put("message", "限流了");
-                return ServerResponse.status(HttpStatus.OK.value())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue(resMap));
-            }
-
+        BlockRequestHandler blockRequestHandler = (serverWebExchange, throwable) -> {
+            Map<String, String> resMap = new HashMap<>();
+            resMap.put("code", HttpStatus.TOO_MANY_REQUESTS.toString());
+            resMap.put("message", "限流了");
+            return ServerResponse.status(HttpStatus.OK.value())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(resMap));
         };
 
         GatewayCallbackManager.setBlockHandler(blockRequestHandler);

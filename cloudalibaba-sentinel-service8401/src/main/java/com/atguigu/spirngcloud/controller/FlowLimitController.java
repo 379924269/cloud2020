@@ -2,14 +2,14 @@ package com.atguigu.spirngcloud.controller;
 
 import com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
-import com.alibaba.csp.sentinel.datasource.WritableDataSource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.atguigu.spirngcloud.service.ProviderPayment9001Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -48,6 +48,15 @@ public class FlowLimitController {
 							 @RequestParam(value = "p2", required = false) String p2) {
 		//int age = 10/0;
 		return "------testHotKey";
+	}
+
+	@Resource
+	private ProviderPayment9001Service providerPayment9001Service;
+	@GetMapping("/testPayment")
+	public Object testPayment() {
+		log.info("==============我写的日志");
+		final int i = 1 / 0;
+		return providerPayment9001Service.getPayment(1);
 	}
 
 	/**

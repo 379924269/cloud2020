@@ -32,3 +32,8 @@ management:
     web:
       exposure:
         include: '*'
+
+# 开启 sentinel 对 feign 的支持
+feign:
+  sentinel:
+    enabled: true
